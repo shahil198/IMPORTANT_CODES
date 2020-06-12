@@ -17,7 +17,7 @@ int main()
 		vector<int> has(n+1,0);
 		for(int i=0;i<n;i++)
 		{
-			int temp=(i-m[arr[i]]+n)%n;
+			int temp=(i-m[arr[i]]+n)%n; //checking that the current element will become equal to the another vector element in how many right rotations'
 			has[temp]++;
 		}
 		cout<<*max_element(has.begin(),has.end())<<endl;
