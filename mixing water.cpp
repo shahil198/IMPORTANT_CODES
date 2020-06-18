@@ -1,83 +1,48 @@
-#include<bits/stdc++.h>
-using namespace std;
 int main()
 {
-	int n;
-	cin>>n;
-	vector<int> arr(n);
-	map<int,int> m,m2;
-	for(int i=0;i<n;i++)
+	int t;
+	cin>>t;
+	while(t--)
 	{
-		cin>>arr[i];
-	}
-	int start=2002,end=2002;
-	//int i;
-	for( int i=0;i<n-1;i++)
-	{   
-	   int val=arr[i];
-	    if( m.find(val) == m.end())//mtlb map me nahi hahi
-	    {
-		
-		for(int j=i+1;j<n;j++)
+		double h,c,t;
+		cin>>h>>c>>t;
+		double first=abs(h-t);
+		double second=abs((h+c)/2-t);
+		int res=1;
+	/*	if(first<second)
 		{
-			if(arr[j]==arr[i] )//&& m.find(arr[j])==m.end())
-			{
-				m.insert({arr[j],1});
-				int x=j;
-				if(start=2002&&end==2002)
-				{
-					start=x;
-					end=x;
-				}
-				else
-				{
-				
-				start=min(start,x);
-				end=max(end,x);
-			    }
-			}
+			cout<<"1\n";
+			continue;
+		}*/
+		if(second<first)
+		{
+			res=2;
+			first=second;
 		}
-		
-	    }
-	}
-	if(start==2002 && end==2002)
-	{
-		cout<<"0\n";
-		return 0;
-	}
-	int first=end-start+1;
-	int start1=2002,end1=2002;
-	for(int i=n-1;i>0;i--)
-	{
-		for(int j=i-1;j>=0;j--)
+		if((h+c)!=2*t)
 		{
-			if(m2.find(arr[i])==m2.end())
+			double value=(t-c)/(2*t-h-c);
+			double k1=ceil(value);
+			double k2=floor(value);
+			if(k2>1)
 			{
-				if(arr[i]==arr[j])
+				double vatk2=abs(((k2*h)+(k2-1)*c)/(2*k2-1)-t);
+				if(vatk2<first)
 				{
-					m2.insert({arr[j],1});
-					int y=j;
-					if(start1==2002&&end1==2002)
-					{
-						start1=j;
-						end1=j;
-					}
-					else
-					{
-					
-					start1=min(start1,y);
-					end1=max(end1,y);
-				    }
+					res=k2*2-1;
+					first=vatk2;
+				}
+			}
+			if(k1>1)
+			{
+				double vatk1=abs(((k1*h)+(k1-1)*c)/(2*k1-1)-t);
+				if(vatk1<first)
+				{
+					res=k1*2-1;
+					first=vatk1;
 				}
 			}
 		}
+		cout<<res<<endl;
 	}
-	if(start1==2002 && end1==2002)
-	{
-		cout<<"0\n";
-		return 0;
-	}
-	
-	int second=end-start+1;
-	cout<<min(first,second)<<endl;
 }
