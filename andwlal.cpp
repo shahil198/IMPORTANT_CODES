@@ -1,3 +1,5 @@
+//june lunch time and max
+//mycode
 #include<bits/stdc++.h>
 using namespace std;
 #define ll long long
@@ -44,4 +46,37 @@ int main()
 		}
 		cout<<res<<endl;
 	}
+}
+==========================================================================================
+//#guru
+	#include<bits/stdc++.h>
+using namespace std;
+#define ll long long 
+int  main()
+{
+  ll int n;
+  cin>>n;
+  ll int k;
+  cin>>k;
+  vector<ll> arr(n);
+  for(int i=0;i<n;i++)
+  {
+  	cin>>arr[i];
+  }
+  vector<pair<ll int,ll int>> prs;
+  for(int i=0;i<=31;i++){
+    ll int sum=0;
+    for(int j=0;j<n;j++){
+      sum+= arr[j]&(1<<i);
+    }
+    prs.push_back(make_pair(sum,-1*i));
+  }
+  sort(prs.rbegin(),prs.rend());
+  
+  ll int answer=0;
+  for(int i=0;i<k;i++){
+    answer+=pow(2,(-1*prs[i].second));
+  }
+  cout<<answer<<endl;
+  return 0;
 }
